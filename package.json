@@ -1,0 +1,22 @@
+{
+  "name": "vollk",
+  "version": "1.0.0",
+  "description": "Multi database seeder",
+  "main": "index.js",
+  "preferGlobal": true,
+  "bin": "./core/commands.js",
+  "scripts": {
+    "main": "node ."
+  },
+  "author": "2rhop <renerp2016@gmail.com> (https://github.com/2rhop)",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.3.0",
+    "commander": "^2.15.1",
+    "dotenv": "^5.0.1",
+    "faker": "^4.1.0",
+    "inquirer": "^5.2.0",
+    "knex": "^0.14.6",
+    "mysql": "^2.15.0"
+  }
+}
