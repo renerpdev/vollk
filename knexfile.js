@@ -4,12 +4,12 @@ dotenv.config()// setting the env variables
 
 module.exports = {
     development: {
-        client: process.env.DATABASE_DRIVER,
+        client: process.env.DB_DRIVER,
         connection: {
-            host: process.env.DATABASE_HOST,
-            user: process.env.DATABASE_USER,
-            password: process.env.DATABASE_PASS,
-            database: process.env.DATABASE_NAME
+            host: process.env.DB_HOST,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASS,
+            database: process.env.DB_NAME
         },
         migrations: {
             tableName: 'migrations',

@@ -1,2 +1,1 @@
-
-module.exports = { doSeeding, makeSeed, doMigrations, makeMigration }
+const actions = require('./core/console')
