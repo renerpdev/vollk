@@ -38,14 +38,25 @@ var field_questions = [
         type: 'list',
         name: 'field_type',
         message: 'Choose a type',
-        choices: _types
+        choices: function () {
+            var t = _types
+            var arr = []
+            for (var i = 0; i < t.length; i++) {
+                arr.push(t[i].name)
+            }
+            return arr
+        }
     },
     {
         type: 'list',
         name: 'type_faker',
         message: 'Choose the type faker',
         choices: function (answer) {
-            return _fakers[answer.field_type]
+            var t = _types
+            for (var i = 0; i < t.length; i++) {
+                if (t[i].name == answer.field_type)
+                    return t[i].fakers
+            }
         }
     },
     {

@@ -40,44 +40,38 @@ var options = [
 
 //------
 function main() {
-    utils.existENV().then((res, rej) => {
-        if (res) {
-            prompt(options).then(answers => {
-                if (answers.option == choices[1]) {
-                    seeding(true,true);
-                } else if (answers.option == choices[2]) {
-                    loadOpts(utils.output_file)
-                }
-                else if (answers.option == choices[3]) {
-                    createSeed()
-                }
-            });
-        }else{
-            console.log('need an .env file')
+    prompt(options).then(answers => {
+        if (answers.option == choices[1]) {
+            seeding(true, true);
+        } else if (answers.option == choices[2]) {
+            loadOpts(utils.output_file)
         }
-    })
-}
-
-function seeding(persist,write) {
-    prompt(seed_questions).then(answers => {
-        table = answers.table_name
-        set_fields(persist,write)
+        else if (answers.option == choices[3]) {
+            createSeed()
+        }
     });
 }
 
-function set_fields(persist,write) {
+function seeding(persist, write) {
+    prompt(seed_questions).then(answers => {
+        table = answers.table_name
+        set_fields(persist, write)
+    });
+}
+
+function set_fields(persist, write) {
     prompt(field_questions).then(answers => {
         fields.push(answers.field_name)
         types.push(answers.field_type + '.' + answers.type_faker)
         if (answers.again) {
-            set_fields(persist,write);
+            set_fields(persist, write);
         } else {
             prompt(other_field_questions).then(answers => {
                 //do seeding here
                 queries = answers.queries
                 clean_table = answers.clean_table
                 lang = answers.lang
-                doSeeding(table, fields, types, lang, queries, clean_table, persist,write)
+                doSeeding(table, fields, types, lang, queries, clean_table, persist, write)
             })
         }
     });
@@ -96,7 +90,7 @@ function loadOpts(path) {
 }
 
 function createSeed() {
-    seeding(false,true)
+    seeding(false, true)
 }
 
 function setConnection() {
