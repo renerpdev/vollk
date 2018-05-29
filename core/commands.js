@@ -18,7 +18,7 @@ program
     .alias('s')
     .description('Run the seeding')
     .action(function () {
-        console.seeding()
+        console.seeding(true)
     });
 
 //-- Show Main list
@@ -30,13 +30,22 @@ program
         console.main()
     });
 
-//-- Load options
+//-- Rerun the last seeding
 program
-    .command('load')
-    .alias('o')
-    .description('Load options')
+    .command('run')
+    .alias('r')
+    .description('Run the last seeding')
     .action(function () {
         console.loadOpts(utils.output_file)
+    });
+
+//-- Create a new seed file
+program
+    .command('create')
+    .alias('c')
+    .description('Create a new seed file')
+    .action(function () {
+        console.createSeed()
     });
 
 program.parse(process.argv);

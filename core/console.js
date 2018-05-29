@@ -3,7 +3,6 @@ const { doSeeding, doSeedingJSON } = require('./db')
 const utils = require('./utils')
 const color = require('colors')
 
-var { Observable } = require('rxjs');
 const
     { field_questions, seed_questions, other_field_questions }
         = require('./questions')
@@ -13,6 +12,8 @@ var choices = [
     'Set connection',
     'Seed database',
     'Do last seeding',
+    'Create a new seed',
+
 ]
 var seed_opts = []
 var fields = []
@@ -31,30 +32,40 @@ var options = [
         choices: [
             choices[1],
             choices[2],
-            new inquirer.Separator(),
-            choices[0],
+            choices[3],
+            // new inquirer.Separator(),
+            // choices[0],
         ]
     },]
 
 //------
 function main() {
-    prompt(options).then(answers => {
-        if (answers.option == choices[1]) {
-            seeding();
-        } else if (answers.option == choices[2]) {
-            loadOpts(utils.output_file)
+    utils.existENV().then((res, rej) => {
+        if (res) {
+            prompt(options).then(answers => {
+                if (answers.option == choices[1]) {
+                    seeding(true);
+                } else if (answers.option == choices[2]) {
+                    loadOpts(utils.output_file)
+                }
+                else if (answers.option == choices[3]) {
+                    createSeed()
+                }
+            });
+        }else{
+            console.log('need an .env file')
         }
-    });
+    })
 }
 
-function seeding() {
+function seeding(persist) {
     prompt(seed_questions).then(answers => {
         table = answers.table_name
-        set_fields()
+        set_fields(persist)
     });
 }
 
-function set_fields() {
+function set_fields(persist) {
     prompt(field_questions).then(answers => {
         fields.push(answers.field_name)
         types.push(answers.field_type + '.' + answers.type_faker)
@@ -66,7 +77,7 @@ function set_fields() {
                 queries = answers.queries
                 clean_table = answers.clean_table
                 lang = answers.lang
-                doSeeding(table, fields, types, lang, queries, clean_table)
+                doSeeding(table, fields, types, lang, queries, clean_table, persist)
             })
         }
     });
@@ -81,6 +92,15 @@ function loadOpts(path) {
             main()
         }
     })
+
 }
 
-module.exports = { main, seeding, loadOpts }
+function createSeed() {
+    seeding(false)
+}
+
+function setConnection() {
+
+}
+
+module.exports = { main, seeding, loadOpts, createSeed }
