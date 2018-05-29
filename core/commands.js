@@ -8,7 +8,7 @@ const prompt = require('inquirer').createPromptModule();
 const console = require('./console');
 
 program
-    .version('0.1.0'.cyan, '-v, --version')
+    .version('1.0.0'.cyan, '-v, --version')
     .description('Vollk - Command Line Interface'.bgBlue)
     .usage('[command] <value>')
 
