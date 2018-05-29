@@ -1,8 +1,8 @@
 # `Vollk`.js
 
-## <img align="center" alt="vollk Logo" src="logo.svg" height=150 title="vollk.js"/>
+## <center><img align="center" alt="vollk Logo" src="assets/logo.svg" height=150 title="vollk.js"/></center>
 
-### This is a command line tool for [Knex](http://knexjs.org).js to seed `mysql` database.
+### This is a command line tool for [Knex](http://knexjs.org).js to seed `MySQL`, `PostgreSQL` databases
 
 ## Table of topics
 1. [Documentation](#documentation)
@@ -14,12 +14,12 @@
 
 ## Documentation
 
-This tool integrates the [inquirer](https://github.com/SBoudrias/Inquirer.js).js library for making more interactive the commands built in [commander](https://www.npmjs.com/package/commander).js . Also this tool incorporates [faker](https://www.npmjs.com/package/faker).js for generating random data.
+This tool integrates the [inquirer](https://www.npmjs.com/package/inquirer).js library for making more interactive the commands built in [commander](https://www.npmjs.com/package/commander).js. Also this tool incorporates [faker](https://www.npmjs.com/package/faker).js for generating massive amounts of fake data.
 
 ## Installation
 
-> ### `npm install`
-> ### `npm link`
+> #### `npm install`
+> #### `npm link`
 
 ## Basic configuration
 
@@ -43,11 +43,9 @@ Finanlly you need to fill this `ENV` variables with theirs respective values.
 
 ## Some options for this commands
 
->#### `--version`
->#### `--help`
+* `--version`
+* `--help`
 
-
-
-## [Further help](#help)
+## Further help
 
 Send me an [email](mailto:renerp2016@gmail.com) if you have some doubt or just add an [issue](https://github.com/2rhop/vollk/issues)
