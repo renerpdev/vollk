@@ -18,7 +18,8 @@ This tool integrates the [inquirer](https://github.com/SBoudrias/Inquirer.js).js
 
 ## Installation
 
-> `npm install -g`
+> ### `npm install`
+> ### `npm link`
 
 ## Basic configuration
 
