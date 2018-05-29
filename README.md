@@ -1,15 +1,16 @@
 # `Vollk`.js
 
-## <center><img align="center" alt="vollk Logo" src="assets/logo.svg" height=150 title="vollk.js"/></center>
+## <img align="center" alt="vollk Logo" src="assets/logo.svg" height=150 title="vollk.js"/>
 
-### This is a command line tool for [Knex](http://knexjs.org).js to seed `MySQL`, `PostgreSQL` databases
+### This is a command line tool for [Knex](http://knexjs.org).js to seed `MySQL`, `PostgreSQL` and other databases
 
 ## Table of topics
 1. [Documentation](#documentation)
 2. [How to install it?](#installation)
-3. [Basic confsiguration](#basic_configuration)
+3. [Basic configuration](#basic_configuration)
 4. [Run and see](#run_and_see_the_magic)
 5. [List of commands](#list_of_commands)
+6. [Other database connections](#other_database_connections)
 6. [Further help](#help)
 
 ## Documentation
@@ -18,12 +19,13 @@ This tool integrates the [inquirer](https://www.npmjs.com/package/inquirer).js l
 
 ## Installation
 
+> #### `git clone https://github.com/2rhop/vollk.git vollk`
 > #### `npm install`
 > #### `npm link`
 
-## Basic configuration
+## Configuration
 
-Before run it you need to create an `.env` file. Copy and paste this code from [here](https://github.com/2rhop/vollk/blob/master/.env.example)
+Before run it you need to create an `.env` file. Copy and paste this code from [here](.env.example) or change the name of the file `.env.example` to `.env` inside this project.
 
 Finanlly you need to fill this `ENV` variables with theirs respective values.
 
@@ -45,6 +47,14 @@ Finanlly you need to fill this `ENV` variables with theirs respective values.
 
 * `--version`
 * `--help`
+
+## Other database connections
+
+* `npm install` mysql2
+* `npm install` mariasql
+* `npm install` strong-oracle
+* `npm install` oracle
+* `npm install` mssql
 
 ## Further help
 
