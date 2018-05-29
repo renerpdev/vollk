@@ -201,12 +201,25 @@ function buildFaker(str, lang) {
     return faker.fake('{{' + str + '}}')
 }
 
-function outputOptions(opts, write) {
+function outputOptions(opts, w) {
     const json = JSON.stringify(opts, null, '  ');
-    console.log(json.bgWhite.blue);
-    if (write) {
-        fs.writeFile(path.resolve('output.json'), json)
+    if (w) {
+        write(json, 'output.json').then((res, err) => {
+            if (!err)
+                console.log(json.bgWhite.blue);
+        })
     }
+}
+
+function write(obj, p) {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(path.resolve(p), obj, null, function (err, data) {
+            if (err)
+                reject(err)
+            else
+                resolve(data)
+        })
+    })
 }
 
 function loadSettings() {
