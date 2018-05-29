@@ -1,33 +1,36 @@
 # `Vollk`.js
-### This is a command line tool for [Knex](http://knexjs.org).js and `mysql` database.
+
+## <img align="center" alt="vollk Logo" src="logo.svg" height=150 title="vollk.js"/>
+
+### This is a command line tool for [Knex](http://knexjs.org).js to seed `mysql` database.
 
 ## Table of topics
-1. [Documentation](#docs)
-2. [How to install it?](#install)
-3. [Basic configuration](#config)
-4. [Run and see](#run)
-5. [List of commands](#commands)
+1. [Documentation](#documentation)
+2. [How to install it?](#installation)
+3. [Basic confsiguration](#basic_configuration)
+4. [Run and see](#run_and_see_the_magic)
+5. [List of commands](#list_of_commands)
 6. [Further help](#help)
 
-## [Documentation](#docs)
+## Documentation
 
 This tool integrates the [inquirer](https://github.com/SBoudrias/Inquirer.js).js library for making more interactive the commands built in [commander](https://www.npmjs.com/package/commander).js . Also this tool incorporates [faker](https://www.npmjs.com/package/faker).js for generating random data.
 
-## [Installation](#install)
+## Installation
 
 > `npm install -g`
 
-## [Basic configuration](#config)
+## Basic configuration
 
 Before run it you need to create an `.env` file. Copy and paste this code from [here](https://github.com/2rhop/vollk/blob/master/.env.example)
 
 Finanlly you need to fill this `ENV` variables with theirs respective values.
 
-## [Run and see the magic](#run)
+## Run and see the magic
 
 > ### `vollk` list
 
-## [List of commands](#commands)
+## List of commands
 
 1. `list` (lists all options)
 
