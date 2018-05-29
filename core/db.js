@@ -16,7 +16,7 @@ function cleanTable(table, knex) {
     })
 }
 
-function doSeeding(table, fields, types, lang, queries, clean_table,persist) {
+function doSeeding(table, fields, types, lang, queries, clean_table, persist, write) {
     var options = {
         'table': table,
         'fields': fields,
@@ -25,25 +25,22 @@ function doSeeding(table, fields, types, lang, queries, clean_table,persist) {
         'queries': queries,
         'doClean': clean_table,
     }
-        if (persist) {
-            console.log('Seeding the database...'.yellow)
-            _seeding(db, table, fields, types, lang, queries, clean_table).then((resp, error) => {
-                if (!error) {
-                    console.log('success!'.green)
-                    close()
-                    utils.outputOptions(options)
-                }else{
-                    console.log('error!')
-                }
-            })
-        } else {
-            utils.outputOptions(options)
-        }
-
+    if (persist) {
+        console.log('Seeding the database...'.yellow)
+        _seeding(db, table, fields, types, lang, queries, clean_table).then((resp, error) => {
+            if (!error) {
+                console.log('success!'.green)
+            } else {
+                console.log('error!')
+            }
+            close()
+        })
+    }
+    utils.outputOptions(options, write)
 }
 
 function doSeedingJSON(json) {
-    doSeeding(json.table, json.fields, json.fakers, json.lang, json.queries, json.doClean,true)
+    doSeeding(json.table, json.fields, json.fakers, json.lang, json.queries, json.doClean, true, false)
 }
 
 function _seeding(knex, table, fields, types, lang, queries, clean_table) {

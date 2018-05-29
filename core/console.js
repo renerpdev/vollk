@@ -44,7 +44,7 @@ function main() {
         if (res) {
             prompt(options).then(answers => {
                 if (answers.option == choices[1]) {
-                    seeding(true);
+                    seeding(true,true);
                 } else if (answers.option == choices[2]) {
                     loadOpts(utils.output_file)
                 }
@@ -58,26 +58,26 @@ function main() {
     })
 }
 
-function seeding(persist) {
+function seeding(persist,write) {
     prompt(seed_questions).then(answers => {
         table = answers.table_name
-        set_fields(persist)
+        set_fields(persist,write)
     });
 }
 
-function set_fields(persist) {
+function set_fields(persist,write) {
     prompt(field_questions).then(answers => {
         fields.push(answers.field_name)
         types.push(answers.field_type + '.' + answers.type_faker)
         if (answers.again) {
-            set_fields();
+            set_fields(persist,write);
         } else {
             prompt(other_field_questions).then(answers => {
                 //do seeding here
                 queries = answers.queries
                 clean_table = answers.clean_table
                 lang = answers.lang
-                doSeeding(table, fields, types, lang, queries, clean_table, persist)
+                doSeeding(table, fields, types, lang, queries, clean_table, persist,write)
             })
         }
     });
@@ -96,7 +96,7 @@ function loadOpts(path) {
 }
 
 function createSeed() {
-    seeding(false)
+    seeding(false,true)
 }
 
 function setConnection() {

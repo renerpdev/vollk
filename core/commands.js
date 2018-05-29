@@ -18,7 +18,7 @@ program
     .alias('s')
     .description('Run the seeding')
     .action(function () {
-        console.seeding(true)
+        console.seeding(true,true)
     });
 
 //-- Show Main list

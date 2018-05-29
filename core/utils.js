@@ -201,10 +201,12 @@ function buildFaker(str, lang) {
     return faker.fake('{{' + str + '}}')
 }
 
-function outputOptions(opts) {
+function outputOptions(opts, write) {
     const json = JSON.stringify(opts, null, '  ');
-    console.log(json);
-    fs.writeFile(path.resolve('output.json'), json)
+    console.log(json.bgWhite.blue);
+    if (write) {
+        fs.writeFile(path.resolve('output.json'), json)
+    }
 }
 
 function loadSettings() {
