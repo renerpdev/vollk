@@ -5,12 +5,13 @@ const { doSeeding, cleanTable } = require('./db')
 const colors = require('colors');
 const utils = require('./utils');
 const prompt = require('inquirer').createPromptModule();
-const console = require('./console');
+const mconsole = require('./console');
+const pjson = require('./../package.json')
 
 program
-    .version('1.0.0'.cyan, '-v, --version')
+    .version(pjson.version.cyan, '-v, --version')
     .description('Vollk - Command Line Interface'.bgBlue)
-    .usage('[command] <value>')
+    .usage('[cmd] <option>')
 
 //-- Run seeding
 program
@@ -18,7 +19,7 @@ program
     .alias('s')
     .description('Run the seeding')
     .action(function () {
-        console.seeding(true,true)
+        mconsole.seeding(true, true)
     });
 
 //-- Show Main list
@@ -27,7 +28,7 @@ program
     .alias('l')
     .description('Main list')
     .action(function () {
-        console.main()
+        mconsole.main()
     });
 
 //-- Rerun the last seeding
@@ -36,7 +37,7 @@ program
     .alias('r')
     .description('Run the last seeding')
     .action(function () {
-        console.loadOpts(utils.output_file)
+        mconsole.loadOpts(utils.output_file)
     });
 
 //-- Create a new seed file
@@ -45,7 +46,7 @@ program
     .alias('c')
     .description('Create a new seed file')
     .action(function () {
-        console.createSeed()
+        mconsole.createSeed()
     });
 
 program.parse(process.argv);
