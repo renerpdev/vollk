@@ -2,15 +2,18 @@
 
 ## <img align="center" alt="vollk Logo" src="assets/logo.svg" height=150 title="vollk.js"/>
 
-### This is a command line tool for [Knex](http://knexjs.org).js to seed `MySQL`, `PostgreSQL` and other databases
+### This is a command line tool built with [Knex](http://knexjs.org).js for seeding massive amount of fake data into multiple databases
 
 ## Table of topics
 1. [Documentation](#documentation)
 2. [How to install it?](#installation)
-3. [Basic configuration](#basic_configuration)
+3. [Basic configuration](#configuration)
 4. [Run and see](#run_and_see_the_magic)
 5. [List of commands](#list_of_commands)
-6. [Other database connections](#other_database_connections)
+6. [Database connections](#database_connections)
+6. [Be a contributor](#contributing)
+6. [New versions of this tool](#changelog)
+6. [Licence](#licence)
 6. [Further help](#help)
 
 ## Documentation
@@ -19,15 +22,42 @@ This tool integrates the [inquirer](https://www.npmjs.com/package/inquirer).js l
 
 ## Installation
 
+### For development
+
 > #### `git clone https://github.com/2rhop/vollk.git vollk`
 > #### `npm install`
 > #### `npm link`
 
+### For production
+
+> #### `npm install -g vollk`
+
 ## Configuration
 
-Before run it you need to create an `.env` file. Copy and paste this code from [here](.env.example) or change the name of the file `.env.example` to `.env` inside this project.
+Before run it you need to create an `.env` file in your relative path. There are multiples ways to do that:
 
-Finanlly you need to fill this `ENV` variables with theirs respective values.
+* Copying the code from [here](.env.example)
+* Renaming file `.env.example` to `.env` inside this project.
+* Running the command `vollk env`
+
+Finally you need to fill this `ENV` variables with theirs respective values.
+
+**[note]:** If there is not `.env` file in your relative path, then default values will be set:
+
++ `MODE:` production
+    - `DB_CLIENT:` mysql 
+    - `DB_NAME:` vollk 
+    - `DB_HOST:` localhost 
+    - `DB_USER:` root 
+    - `DB_PASS:`  
+    - `DB_PORT:` 3306 
+    
+
+or...
+
++ `MODE:` development
+    - `DB_CLIENT:` sqlite 
+    - `path:` db.sqlite 
 
 ## Run and see the magic
 
@@ -35,26 +65,42 @@ Finanlly you need to fill this `ENV` variables with theirs respective values.
 
 ## List of commands
 
-1. `list` (lists all options)
+1. `list` (Lists all options)
 
-2. `seed` (seeds the database with yours especs)
+2. `seed` (Seeds the database with yours especs)
 
-3. `create` (creates a seed file)
+3. `create` (Creates a seed file)
 
 4. `run` (Runs the last seed file)
+
+4. `env` (Creates an empty .env file)
 
 ## Some options for this commands
 
 * `--version`
 * `--help`
 
-## Other database connections
+## Database connections
+
+To integrate this tool with other database connections you need to install the appropriate package: (by default only supports **`mysql`**, **`pg`**)
 
 * `npm install` mysql2
 * `npm install` mariasql
 * `npm install` strong-oracle
 * `npm install` oracle
 * `npm install` mssql
+* `npm install` sqlite3
+
+## Contributing
+
+Feel free to add more functionalities and bug fixes but also add a test for each of them. Just type `npm test`
+
+## Changelog
+
+Get update with all new versions [here](https://github.com/2rhop/vollk/releases)
+
+## Licence
+Copyright (c) 2018 Rene Ricardo. Licensed under the MIT license.
 
 ## Further help
 

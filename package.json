@@ -1,13 +1,30 @@
 {
   "name": "vollk",
-  "version": "1.0.0",
-  "description": "Multi database seeder",
+  "version": "1.2.1",
+  "description": "Knex - CLI for seeding multiples databases",
   "main": "index.js",
   "preferGlobal": true,
   "bin": "./core/commands.js",
   "scripts": {
-    "main": "node ."
+    "main": "node .",
+    "test": "jasmine"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/2rhop/vollk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/2rhop/vollk/issues"
+  },
+  "keywords": [
+    "cli",
+    "knex",
+    "inquirer",
+    "commander",
+    "faker",
+    "dotenv"
+  ],
+  "homepage": "https://github.com/2rhop/vollk",
   "author": "2rhop <renerp2016@gmail.com> (https://github.com/2rhop)",
   "license": "MIT",
   "dependencies": {
@@ -19,5 +36,8 @@
     "knex": "^0.14.6",
     "mysql": "^2.15.0",
     "pg": "^7.4.3"
+  },
+  "devDependencies": {
+    "jasmine": "^3.1.0"
   }
 }
