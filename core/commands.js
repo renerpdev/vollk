@@ -49,4 +49,13 @@ program
         mconsole.createSeed()
     });
 
+//-- Create an empty .env file
+program
+    .command('env')
+    .alias('e')
+    .description('Create an empty .env file')
+    .action(function () {
+        mconsole.create_ENV_File()
+    });
+
 program.parse(process.argv);

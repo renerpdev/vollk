@@ -9,11 +9,10 @@ const
 
 var prompt = inquirer.createPromptModule()
 var choices = [
-    'Set connection',
+    'Create .env file here!',
     'Seed database',
     'Do last seeding',
     'Create a new seed',
-
 ]
 var seed_opts = []
 var fields = []
@@ -33,15 +32,17 @@ var options = [
             choices[1],
             choices[2],
             choices[3],
-            // new inquirer.Separator(),
-            // choices[0],
+            new inquirer.Separator(),
+            choices[0],
         ]
     },]
 
 //------
 function main() {
     prompt(options).then(answers => {
-        if (answers.option == choices[1]) {
+        if (answers.option == choices[0]) {
+            create_ENV_File()
+        } else if (answers.option == choices[1]) {
             seeding(true, true);
         } else if (answers.option == choices[2]) {
             loadOpts(utils.output_file)
@@ -49,7 +50,12 @@ function main() {
         else if (answers.option == choices[3]) {
             createSeed()
         }
+
     });
+}
+
+function create_ENV_File() {
+    require('./../setup')
 }
 
 function seeding(persist, write) {
@@ -86,7 +92,6 @@ function loadOpts(path) {
             main()
         }
     })
-
 }
 
 function createSeed() {
@@ -97,4 +102,4 @@ function setConnection() {
 
 }
 
-module.exports = { main, seeding, loadOpts, createSeed }
+module.exports = { main, seeding, loadOpts, createSeed, create_ENV_File }
