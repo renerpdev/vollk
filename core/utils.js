@@ -238,10 +238,11 @@ function outputOptions(opts, w) {
     const json = JSON.stringify(opts, null, '  ');
     if (w) {
         write(json, 'output.json').then((res, err) => {
-            if (!err)
-                console.log(json.bgWhite.blue);
+            if (err)
+                console.log('error')
         })
     }
+    console.log(json.bgWhite.blue);
 }
 
 function write(obj, p) {

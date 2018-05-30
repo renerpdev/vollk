@@ -5,7 +5,7 @@ const dotenv = require('dotenv')
 
 dotenv.config()// setting the env variables
 
-const environment = 'development'
-const db = knex(knex_conf[environment])// configuring the knex with the env varibles
+const environment = process.env.MODE || 'production'
+const db = knex(knex_conf[environment])// configuring knex with the env variables
 
 module.exports = db

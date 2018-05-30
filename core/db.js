@@ -29,7 +29,7 @@ function doSeeding(table, fields, types, lang, queries, clean_table, persist, wr
         console.log('Seeding the database...'.yellow)
         _seeding(db, table, fields, types, lang, queries, clean_table).then((resp, error) => {
             if (!error) {
-                console.log('success!'.green)
+                console.log('SUCCESS!'.green)
             } else {
                 console.log('error!')
             }
