@@ -11,15 +11,22 @@ function close() {
 }
 
 function cleanTable(table, knex) {
-    knex(table).del().then(() => {
-        console.log('Table cleaned'.gray)
+    return new Promise((resolve, reject) => {
+        knex(table).del().then((res, err) => {
+            if (err)
+                reject()
+            else {
+                console.log('Table cleaned'.gray)
+                resolve()
+            }
+        })
     })
 }
 
 async function doSeeding(options, persist, write) {
     if (persist) {
         console.log('Seeding the database...'.yellow)
-       seedingAsync(options).then((resp, error) => {
+        seedingAsync(options).then((resp, error) => {
             if (!error) {
                 console.log('Operation '.green + 'succeeded!'.bgGreen)
             } else {
@@ -40,7 +47,7 @@ async function seedingAsync(options) {
     // Deletes ALL existing entries
     const knex = db
 
-    if (options.clean_table)
+    if (options.doClean)
         await cleanTable(options.table, knex)
 
     return knex(options.table)
