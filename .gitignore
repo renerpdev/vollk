@@ -28,6 +28,7 @@
 !.vscode/extensions.json
 
 # misc
+/npm_assets
 /.sass-cache
 /connect.lock
 /coverage

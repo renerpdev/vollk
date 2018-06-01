@@ -14,7 +14,7 @@
 6. [Be a contributor](#contributing)
 6. [New versions of this tool](#changelog)
 6. [Licence](#licence)
-6. [Further help](#help)
+6. [Further help](#further_help)
 
 ## Documentation
 
@@ -75,7 +75,7 @@ or...
 
 4. `env` (Creates an empty .env file)
 
-## Some options for this commands
+### Some options for this commands
 
 * `--version`
 * `--help`
@@ -93,7 +93,9 @@ To integrate this tool with other database connections you need to install the a
 
 ## Contributing
 
-Feel free to add more functionalities and bug fixes but also add a test for each of them. Just type `npm test`
+All the unit tests are written with [Jasmine](https://www.npmjs.com/package/jasmine). Feel free to add more functionalities and bug fixes but also add a test for each of them. Just type `npm test`, but before that you need to install globally `Jasmine`
+
+> `npm install -g jasmine`
 
 ## Changelog
 
@@ -104,4 +106,4 @@ Copyright (c) 2018 Rene Ricardo. Licensed under the MIT license.
 
 ## Further help
 
-Send me an [email](mailto:renerp2016@gmail.com) if you have some doubt or just add an [issue](https://github.com/2rhop/vollk/issues)
+Send me an [email](mailto:renerp2016@gmail.com) or a [tweet](https://twitter.com/2rhop_official) if you have some doubt or just add an [issue](https://github.com/2rhop/vollk/issues)

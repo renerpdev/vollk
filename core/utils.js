@@ -234,15 +234,37 @@ function buildFaker(str, lang) {
     return faker.fake('{{' + str + '}}')
 }
 
-function outputOptions(opts, w) {
-    const json = JSON.stringify(opts, null, '  ');
-    if (w) {
-        write(json, 'output.json').then((res, err) => {
-            if (err)
-                console.log('error')
-        })
-    }
+async function output_options_async(opts, w) {
+    const json = await JSON.stringify(opts, null, '  ');
     console.log(json.bgWhite.blue);
+    if (w)
+        return write(json, 'output.json')
+    return
+}
+
+function create_env_file_async(data) {
+    var mdata = data
+    if (!data) {
+        mdata = `MODE='production'
+
+DB_CLIENT=
+DB_NAME=
+DB_USER=
+DB_PASS=
+DB_HOST=127.0.0.1
+DB_PORT=
+DB_URL=
+SQLITE_PATH=
+    `
+    }
+    return new Promise(async (resolve, reject) => {
+        await fs.writeFile('.env', mdata, null, (err) => {
+            if (err)
+                reject(err)
+            else
+                resolve()
+        })
+    })
 }
 
 function write(obj, p) {
@@ -256,7 +278,11 @@ function write(obj, p) {
     })
 }
 
-function loadSettings() {
+function loadSettings(path) {
+    if (path)
+        settings_file = path
+
+    console.log('file:  '.bgMagenta + settings_file)
     return new Promise((resolve, reject) => {
         loadOptions(settings_file, function (err, res) {
             if (err)
@@ -265,11 +291,6 @@ function loadSettings() {
                 resolve(res)
         })
     })
-}
-
-function saveSettings(settings) {
-    const json = JSON.stringify(settings, null, '  ');
-    fs.writeFile(settings_file, json)
 }
 
 function loadOptions(path, callback) {
@@ -282,8 +303,42 @@ function loadOptions(path, callback) {
     })
 }
 
+function readFileAsync(path) {
+    return new Promise((res, rej) => {
+        fs.readFile(path, function (err, data) {
+            if (err) {
+                rej('Can not found the file')
+            }
+            res(data)
+        })
+    })
+
+}
+
+//If the file exists return true otherwise false
+function exists_file(path) {
+    return new Promise((resolve) => {
+        fs.exists(path, (exists) => {
+            if (exists)
+                resolve(true)
+            resolve(false)
+        })
+    })
+}
+
+//remove the file from that path
+function remove_file(path) {
+    return new Promise((resolve) => {
+        fs.unlink(path, (err) => {
+            if (err)
+                resolve(false)
+            resolve(true)
+        })
+    })
+}
+
 
 module.exports = {
-    _langs, _types, buildFaker,
-    outputOptions, loadOptions, output_file, settings_file, loadSettings, saveSettings
+    _langs, _types, buildFaker, create_env_file_async,
+    loadOptions, output_file, settings_file, loadSettings, output_options_async, exists_file, remove_file, readFileAsync
 }

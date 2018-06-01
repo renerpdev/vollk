@@ -1,5 +1,5 @@
 const inquirer = require('inquirer')
-const { doSeeding, doSeedingJSON } = require('./db')
+const db = require('./db')
 const utils = require('./utils')
 const color = require('colors')
 
@@ -41,7 +41,7 @@ var options = [
 function main() {
     prompt(options).then(answers => {
         if (answers.option == choices[0]) {
-            create_ENV_File()
+            create_env_file()
         } else if (answers.option == choices[1]) {
             seeding(true, true);
         } else if (answers.option == choices[2]) {
@@ -54,8 +54,15 @@ function main() {
     });
 }
 
-function create_ENV_File() {
-    require('./../setup')
+function create_env_file() {
+    utils.create_env_file_async().then((res, err) => {
+        if (err)
+            console.log('Error occurs when trying to write the .env file'.red)
+        else
+            console.log('An empty .env file was created'.green)
+    })
+
+
 }
 
 function seeding(persist, write) {
@@ -77,16 +84,27 @@ function set_fields(persist, write) {
                 queries = answers.queries
                 clean_table = answers.clean_table
                 lang = answers.lang
-                doSeeding(table, fields, types, lang, queries, clean_table, persist, write)
+
+                var options = {
+                    table: table,
+                    fields: fields,
+                    fakers: types,
+                    lang: lang,
+                    queries: queries,
+                    doClean: clean_table,
+                }
+                db.doSeeding(options, persist, write)
             })
         }
     });
 }
 
-function loadOpts(path) {
-    utils.loadOptions(path, function (err, out) {
+async function loadOpts(path) {
+    if (!path)
+        path = 'output.json'
+    utils.loadOptions(path, async function (err, out) {
         if (!err)
-            doSeedingJSON(out)
+            await db.doSeedingJSON(out)
         else {
             console.log('File \'output.json\' not found!'.red)
             main()
@@ -98,8 +116,4 @@ function createSeed() {
     seeding(false, true)
 }
 
-function setConnection() {
-
-}
-
-module.exports = { main, seeding, loadOpts, createSeed, create_ENV_File }
+module.exports = { main, seeding, loadOpts, createSeed, create_env_file, set_fields }

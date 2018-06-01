@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const program = require('commander');
-const { doSeeding, cleanTable } = require('./db')
 const colors = require('colors');
 const utils = require('./utils');
 const prompt = require('inquirer').createPromptModule();
@@ -55,7 +54,7 @@ program
     .alias('e')
     .description('Create an empty .env file')
     .action(function () {
-        mconsole.create_ENV_File()
+        mconsole.create_env_file()
     });
 
 program.parse(process.argv);
