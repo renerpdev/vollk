@@ -245,14 +245,13 @@ async function output_options_async(opts, w) {
 function create_env_file_async(data) {
     var mdata = data
     if (!data) {
-        mdata = `MODE='production'
+        mdata = `MODE='development'
 
 DB_CLIENT=
 DB_NAME=
 DB_USER=
 DB_PASS=
 DB_HOST=127.0.0.1
-DB_PORT=
 DB_URL=
 SQLITE_PATH=
     `

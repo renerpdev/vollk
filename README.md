@@ -2,7 +2,7 @@
 
 ## <img align="center" alt="vollk Logo" src="assets/logo.svg" height=150 title="vollk.js"/>
 
-### This is a command line tool built with [Knex](http://knexjs.org).js for seeding massive amount of fake data into multiple databases
+### This is a command line tool built for [Knex](http://knexjs.org).js for seeding massive amount of fake data into multiple databases
 
 ## Table of topics
 1. [Documentation](#documentation)
@@ -44,20 +44,24 @@ Finally you need to fill this `ENV` variables with theirs respective values.
 
 **[note]:** If there is not `.env` file in your relative path, then default values will be set:
 
-+ `MODE:` production
++ `MODE:` **development**
     - `DB_CLIENT:` mysql 
     - `DB_NAME:` vollk 
     - `DB_HOST:` localhost 
     - `DB_USER:` root 
-    - `DB_PASS:`  
-    - `DB_PORT:` 3306 
-    
+    - `DB_PASS:` _[none]_ 
 
 or...
 
-+ `MODE:` development
-    - `DB_CLIENT:` sqlite 
-    - `path:` db.sqlite 
++ `MODE:` **production**
+    - `DB_CLIENT:` pg 
+    - `DB_URL:` _[none]_ 
+    
+or...
+
++ `MODE:` **local**
+    - `DB_CLIENT:` sqlite3
+    - `SQLITE_PATH:` db.sqlite 
 
 ## Run and see the magic
 
@@ -102,7 +106,7 @@ All the unit tests are written with [Jasmine](https://www.npmjs.com/package/jasm
 Get update with all new versions [here](https://github.com/2rhop/vollk/releases)
 
 ## Licence
-Copyright (c) 2018 Rene Ricardo ([@twitter](https://twitter.com/2rhop_official)). Licensed under the MIT license.
+Copyright (c) 2018 Rene Ricardo. Licensed under the MIT license.
 
 ## Further help
 

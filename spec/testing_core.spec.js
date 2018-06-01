@@ -16,14 +16,13 @@ describe('Testing core:', () => {
 
     var persisted
 
-    const data = `MODE='production'
+    const data = `MODE='development'
 
 DB_CLIENT='mysql'
 DB_NAME='vollktestdb'
 DB_USER='root'
 DB_PASS=
 DB_HOST=127.0.0.1
-DB_PORT=3306
 DB_URL=
 SQLITE_PATH=
 `
