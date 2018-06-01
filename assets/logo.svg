@@ -56,5 +56,6 @@
 			c0.1,0,0.3,0.1,0.4,0.1c39.2,10.2,81.7,26.5,126.8,48.4C937.5,184.6,922.7,209.6,906.1,240.1z"/>
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 394.706 737.8848)" fill="#333333" stroke="#333333" stroke-width="2" stroke-miterlimit="10" font-family="'MVBoli'" font-size="64.2844">VOLLK</text>
+<text transform="matrix(1 0 0 1 394.706 737.8848)" fill="#333333" font-family="'MVBoli'" font-size="64.2844">VOLLK</text>
+<text transform="matrix(0.888 0 0 1 383.7061 740.9083)" fill="none" stroke="#333333" stroke-width="2" stroke-miterlimit="10" font-family="'MVBoli'" font-size="80.9903">VOLLK</text>
 </svg>
