@@ -102,7 +102,7 @@ All the unit tests are written with [Jasmine](https://www.npmjs.com/package/jasm
 Get update with all new versions [here](https://github.com/2rhop/vollk/releases)
 
 ## Licence
-Copyright (c) 2018 Rene Ricardo. Licensed under the MIT license.
+Copyright (c) 2018 Rene Ricardo ([@twitter](https://twitter.com/2rhop_official)). Licensed under the MIT license.
 
 ## Further help
 
