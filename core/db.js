@@ -16,7 +16,7 @@ function cleanTable(table, knex) {
             if (err)
                 reject()
             else {
-                console.log('Table cleaned'.gray)
+                console.log(`Table `.gray + `${table.toUpperCase().yellow} ` + `cleaned`.gray)
                 resolve()
             }
         })
@@ -26,14 +26,18 @@ function cleanTable(table, knex) {
 async function doSeeding(options, persist, write) {
     if (persist) {
         console.log('Seeding the database...'.yellow)
-        seedingAsync(options).then((resp, error) => {
-            if (!error) {
-                console.log('Operation '.green + 'succeeded!'.bgGreen)
-            } else {
-                console.log('Operation '.red + 'Failed!'.bgRed)
-            }
-            close()
-        })
+        var tables = options.tables
+        for (var x = 0; x < tables.length; x++) {
+          await  seedingAsync(tables[x]).then((resp, error) => {
+                var t = tables[x]
+                if (!error) {
+                    console.log(`Seed table ${resp.toUpperCase()}: `.green + 'Succeeded!'.bgGreen)
+                } else {
+                    console.log(`Seed table ${resp.toUpperCase()}: `.red + 'Failed!'.bgRed)
+                }
+            })
+        }
+       await close()
     }
     await utils.output_options_async(options, write)
 }
@@ -46,36 +50,44 @@ async function doSeedingJSON(options) {
 async function seedingAsync(options) {
     // Deletes ALL existing entries
     const knex = db
+    var table = options.name
 
     if (options.doClean)
-        await cleanTable(options.table, knex)
+        await cleanTable(table, knex)
 
-    return knex(options.table)
-        .then(function (resp, err) {
-            // Inserts seed entries
-            if (err) {
-                return
-            }
-            var fb = []
-            var myObject = {};
-            var fields = options.fields
-            var types = options.fakers
-            for (var i = 0; i < options.queries; i++) {
-                for (var j = 0; j < fields.length; j++) {
-                    Object.defineProperty(myObject, fields[j], {
-                        value: utils.buildFaker(types[j], options.lang),
-                        writable: true,
-                        configurable: true,
-                        enumerable: true
-                    });
-                }
-                fb[i] = myObject
-                myObject = {};
-            }
-            return knex(options.table).insert(fb);
-        });
+    // console.log(`Seeding table `.green + `${table.toUpperCase()}`)
+    // Inserts seed entries
+    var fb = []
+    var myObject = {};
+    var fields = options.fields
+    var types = options.fakers
+    for (var i = 0; i < options.queries; i++) {
+        for (var j = 0; j < fields.length; j++) {
+            Object.defineProperty(myObject, fields[j], {
+                value: utils.buildFaker(types[j], options.lang),
+                writable: true,
+                configurable: true,
+                enumerable: true
+            });
+        }
+        fb[i] = myObject
+        myObject = {};
+    }
+    return new Promise((resolve, reject) => {
+        knex(table).insert(fb).then((res, err) => {
+            if (err)
+                reject('Error occurs when seeding'.red)
+            else
+                resolve(table)
+        })
+    })
 };
 
 //--
 
-module.exports = { doSeeding, cleanTable, doSeedingJSON, seedingAsync }
+module.exports = {
+    doSeeding,
+    cleanTable,
+    doSeedingJSON,
+    seedingAsync
+}

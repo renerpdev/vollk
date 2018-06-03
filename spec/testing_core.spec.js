@@ -6,12 +6,14 @@ describe('Testing core:', () => {
     var spy, value
 
     var options = {
-        table: 'test',
-        fields: ["title", "description"],
-        fakers: ["lorem.word", "lorem.sentence"],
-        lang: 'en',
-        queries: 2,
-        doClean: false
+        tables: [{
+            name: 'test',
+            fields: ["title", "description"],
+            fakers: ["lorem.word", "lorem.sentence"],
+            lang: 'en',
+            queries: 2,
+            doClean: false
+        }]
     }
 
     var persisted
@@ -23,7 +25,9 @@ DB_NAME='vollktestdb'
 DB_USER='root'
 DB_PASS=
 DB_HOST=127.0.0.1
+
 DB_URL=
+
 SQLITE_PATH=
 `
 
@@ -38,7 +42,7 @@ SQLITE_PATH=
 
     beforeEach(async () => {
         value = await utils.create_env_file_async(data)
-        await utils.remove_file('output.json')//wait for the file to be removed
+        await utils.remove_file('output.json') //wait for the file to be removed
     });
 
     it('should create the .env file containing the properties', async () => {
@@ -63,8 +67,8 @@ SQLITE_PATH=
     });
 
     it('the function doSeedingJson() -> should call the functions doSeedingJSON(), doSeeding() inside it', async () => {
-        await utils.output_options_async(options, true)//creates the output.json file before load it
-        await db.doSeedingJSON(options)//seed db with the loaded file
+        await utils.output_options_async(options, true) //creates the output.json file before load it
+         db.doSeedingJSON(options) //seed db with the loaded file
 
         expect(spy_json).toHaveBeenCalled()
         expect(spy_outputOpts).toHaveBeenCalled()

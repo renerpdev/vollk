@@ -4,8 +4,7 @@ const path = require('path')
 const output_file = 'output.json'
 const settings_file = 'settings.json'
 
-var _types = [
-    {
+var _types = [{
         name: 'lorem',
         fakers: [
             'word',
@@ -236,9 +235,10 @@ function buildFaker(str, lang) {
 
 async function output_options_async(opts, w) {
     const json = await JSON.stringify(opts, null, '  ');
-    console.log(json.bgWhite.blue);
-    if (w)
+    if (w) {
+        console.log(json.bgWhite.blue);
         return write(json, 'output.json')
+    }
     return
 }
 
@@ -252,7 +252,9 @@ DB_NAME=
 DB_USER=
 DB_PASS=
 DB_HOST=127.0.0.1
+
 DB_URL=
+
 SQLITE_PATH=
     `
     }
@@ -338,6 +340,16 @@ function remove_file(path) {
 
 
 module.exports = {
-    _langs, _types, buildFaker, create_env_file_async,
-    loadOptions, output_file, settings_file, loadSettings, output_options_async, exists_file, remove_file, readFileAsync
+    _langs,
+    _types,
+    buildFaker,
+    create_env_file_async,
+    loadOptions,
+    output_file,
+    settings_file,
+    loadSettings,
+    output_options_async,
+    exists_file,
+    remove_file,
+    readFileAsync
 }

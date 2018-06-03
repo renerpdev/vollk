@@ -1,25 +1,26 @@
-const { _langs, _types, _fakers } = require('./utils')
+const {
+    _langs,
+    _types,
+    _fakers
+} = require('./utils')
 
 //--
-var seed_questions = [
-    {
-        type: 'input',
-        name: 'table_name',
-        message: 'Table name:',
-        validate: function (value) {
-            var pass = value.match(
-                /[a-z]/gi
-            );
-            if (pass) {
-                return true;
-            }
-
-            return 'Set a valid table name'
+var seed_questions = [{
+    type: 'input',
+    name: 'table_name',
+    message: 'Table name:',
+    validate: function (value) {
+        var pass = value.match(
+            /[a-z]/gi
+        );
+        if (pass) {
+            return true;
         }
-    },
-]
-var field_questions = [
-    {
+
+        return 'Set a valid table name'
+    }
+}, ]
+var field_questions = [{
         type: 'input',
         name: 'field_name',
         message: 'Name of field:',
@@ -66,8 +67,7 @@ var field_questions = [
     }
 ]
 
-var other_field_questions = [
-    {
+var other_field_questions = [{
         type: 'list',
         name: 'lang',
         message: 'Select the faker language:',
@@ -94,7 +94,17 @@ var other_field_questions = [
             return 'Set a valid number'
         }
     },
+    {
+        type: 'confirm',
+        name: 'add_table',
+        message: 'Do you want to add more tables?',
+        default: false
+    },
 ]
 
 
-module.exports = { field_questions, seed_questions, other_field_questions }
+module.exports = {
+    field_questions,
+    seed_questions,
+    other_field_questions
+}
