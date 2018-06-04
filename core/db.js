@@ -1,11 +1,11 @@
 const knex_conf = require('./../knexfile')
-const db = require('./db.conf')
+const knex = require('./db.conf')
 const colors = require('colors');
 const utils = require('./utils');
 const path = require('path');
 
 function close() {
-    db.destroy().then(() => {
+    knex.destroy().then(() => {
         // console.log('Connection closed'.inverse)
     })
 }
@@ -28,7 +28,7 @@ async function doSeeding(options, persist, write) {
         console.log('Seeding the database...'.yellow)
         var tables = options.tables
         for (var x = 0; x < tables.length; x++) {
-          await  seedingAsync(tables[x]).then((resp, error) => {
+            await seedingAsync(tables[x]).then((resp, error) => {
                 var t = tables[x]
                 if (!error) {
                     console.log(`Seed table ${resp.toUpperCase()}: `.green + 'Succeeded!'.bgGreen)
@@ -37,7 +37,7 @@ async function doSeeding(options, persist, write) {
                 }
             })
         }
-       await close()
+        await close()
     }
     await utils.output_options_async(options, write)
 }
@@ -49,7 +49,6 @@ async function doSeedingJSON(options) {
 
 async function seedingAsync(options) {
     // Deletes ALL existing entries
-    const knex = db
     var table = options.name
 
     if (options.doClean)
@@ -83,11 +82,21 @@ async function seedingAsync(options) {
     })
 };
 
+async function create_table(table_name, fields) {
+    await knex.schema.createTable(table_name, function (table) {
+        table.increments();
+        for (var i = 0; i < fields.length; i++)
+            table.string(fields[i]);
+        table.timestamps();
+    })
+}
+
 //--
 
 module.exports = {
     doSeeding,
     cleanTable,
     doSeedingJSON,
-    seedingAsync
+    seedingAsync,
+    create_table
 }

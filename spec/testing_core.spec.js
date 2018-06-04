@@ -38,6 +38,8 @@ SQLITE_PATH=
         spy_outputOpts = spyOn(utils, 'output_options_async').and.callThrough()
         spy_json = spyOn(db, 'doSeedingJSON').and.callThrough()
         spy_loadOpts = spyOn(mconsole, 'loadOpts').and.callThrough()
+
+        db.create_table('test',['title','description'])
     });
 
     beforeEach(async () => {

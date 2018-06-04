@@ -1,6 +1,6 @@
 {
   "name": "vollk",
-  "version": "1.3.0",
+  "version": "1.4.0-beta",
   "description": "Knex - CLI for seeding multiples databases",
   "main": "index.js",
   "preferGlobal": true,
