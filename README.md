@@ -24,7 +24,7 @@ This tool integrates the [inquirer](https://www.npmjs.com/package/inquirer).js l
 
 ### For development
 
-> #### `git clone https://github.com/2rhop/vollk.git vollk`
+> #### `git clone https://github.com/renerpdev/vollk.git vollk`
 > #### `npm install`
 > #### `npm link`
 
@@ -103,7 +103,7 @@ All the unit tests are written with [Jasmine](https://www.npmjs.com/package/jasm
 
 ## Changelog
 
-Get update with all new versions [here](https://github.com/2rhop/vollk/releases)
+Get update with all new versions [here](https://github.com/renerpdev/vollk/releases)
 
 ## Licence
 Copyright (c) 2018 Rene Ricardo. Licensed under the MIT license.
