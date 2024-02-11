@@ -13,7 +13,7 @@
 6. [Database connections](#database_connections)
 6. [Be a contributor](#contributing)
 6. [New versions of this tool](#changelog)
-6. [Licence](#licence)
+6. [License](#license)
 6. [Further help](#further_help)
 
 ## Documentation
@@ -105,7 +105,7 @@ All the unit tests are written with [Jasmine](https://www.npmjs.com/package/jasm
 
 Get update with all new versions [here](https://github.com/renerpdev/vollk/releases)
 
-## Licence
+## License
 Copyright (c) 2018 Rene Ricardo. Licensed under the MIT license.
 
 ## Further help
